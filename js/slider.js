@@ -1,14 +1,5 @@
-/*
- * @Author: your name
- * @Date: 2020-05-09 16:40:27
- * @LastEditTime: 2020-05-10 17:17:14
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \whq\demo_01\js\slider1.js
- */
 $(function () {
     function windowResize() {
-        console.log("窗口大小改变");
         document.documentElement.style.fontSize =
             document.documentElement.clientWidth / 7.5 + "px";
     }
@@ -83,7 +74,6 @@ $(function () {
             } else {
                 moves = moves > maxB ? maxB : moves;
             }
-            // console.log("maxT", maxT, maxB, moves);
             let curMoves = parseInt(lastMoves) + moves;
             $(this).css("transform", "translate3d(0, " + curMoves + "px ,0)");
             // 控制上下移动范围结束
@@ -92,7 +82,6 @@ $(function () {
             curList = Math.floor(maxT / parseInt(liH));
             targetList = Math.round(moves / parseInt(liH)) + curList; 
             movedHeight = (targetList - curList) * parseInt(liH); 
-            console.log(curList,targetList)
             // 被替换元素的移动及序号互换
             let dom = $(this).siblings().filter(function(){
                 return $(this).find("span").eq(0).text() == targetList + 1;
@@ -106,7 +95,6 @@ $(function () {
                 if(directFlag) {
                     domCurmoves = parseInt(domLastmoves) + parseInt(liH);
                 }else{
-                    console.log("返回一步")
                     domCurmoves = parseInt(domLastmoves) - parseInt(liH);
                 }
                 dom.css("transform", "translate3d(0, " + domCurmoves + "px,0)"); 
@@ -118,8 +106,6 @@ $(function () {
             $(this).siblings().removeClass("un-moveing");
             let curMoves = parseInt(lastMoves) + movedHeight;
             $(this).css("transform", "translate3d(0, " + curMoves + "px ,0)");
-            movedHeight = 0;
-            timer = null;
             // 初始化
             let oldTxt = self.data.splice(curList, 1);
             self.data.splice(targetList, 0, oldTxt);
