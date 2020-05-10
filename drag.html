@@ -1,0 +1,125 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-05-08 22:45:39
+ * @LastEditTime: 2020-05-10 17:22:29
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \whq\demo_01\drag.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		/>
+		<meta name="format-detection" content="telephone=no" />
+		<meta content="yes" name="mobile-web-app-capable" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta name="robots" content="all" />
+		<meta name="author" content="gebilaowang" />
+		<meta name="Copyright" content="版权方" />
+		<meta name="Description" content="页面的描述内容" />
+		<meta name="Keywords" content="页面关键字" />
+		<title>问卷选项拖拽排序</title>
+		<link rel="stylesheet" href="./CSS/base.css" />
+		<style>
+			.remind {
+				font-size: 16px;
+				margin-left: 20px;
+				padding-bottom: 2px;
+				width: 100%;
+				position: relative;
+			}
+			.remind::after {
+				content: "";
+				display: block;
+				width: 100%;
+				height: 1px;
+				transform: scaleY(0.5);
+				position: absolute;
+				bottom: 0;
+				background-color: #ccc;
+				opacity: .8;
+			}
+			.question-box {
+				width: 100%;
+				position: relative;
+				user-select: none;
+			}
+			.question-box.un-init .cicle{
+				background-color: #ccc;
+				color: #ffffff;
+			}
+			.row {
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 15px 20px;
+				box-sizing: border-box;
+				font-size: 16px;
+				transform: translate3d(0,0,0);
+			}
+			.row::before {
+				content: "";
+				display: block;
+				width: 100%;
+				height: 1px;
+				transform: scaleY(0.5);
+				position: absolute;
+				top: 0;
+				background-color: #ccc;
+				opacity: .8;
+			}
+			.row:first-of-type::before {
+				content: none;
+			}
+			.row.moveing::before {
+				content: none;
+			}
+			.row:not(.moveing) {
+				transition: all 0.2s ease-in;
+			}
+			.row.moveing {
+				z-index: 2;
+				background-color: #2863f3;
+				opacity: 0.8;
+			}
+			.row.moveing .cicle {
+				background-color: #ffffff;
+				color: #2863f3;
+			}
+			.row.moveing .icon-box {
+				color: #ffffff;
+			}
+			.row.un-moveing .cicle {
+				background-color: #ccc;
+				color: #ffffff;
+			}
+			.row.un-moveing .icon-box {
+				display: none;
+			}
+			.cicle {
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				line-height: 20px;
+				border-radius: 50%;
+				margin-right: 10px;
+				text-align: center;
+				background-color: #2863f3;
+				color: #ffffff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="remind">拖动排序</div>
+		<div class="question-box un-init"></div>
+		<script src="./cdn/zepto.js"></script>
+		<!-- <script src="./cdn/touch.js"></script> -->
+		<script src="./js/slider.js"></script>
+	</body>
+</html>
